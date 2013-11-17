@@ -35,13 +35,12 @@ public class Player
 		{
 			if (playerCard[n] == 0)
 			{
-				cardInHand = n;
+				cardInHand = n + 1;
 			}	
 		}
 		return cardInHand;
 		
 	}
-	
 	public int getScoreInHand()
 	{
 		int cardScore = 0;
@@ -56,5 +55,12 @@ public class Player
 	{
 		return ("Player Name: " + playerName);
 	}
-
+	
+	public int getLastCard()
+	{
+		
+		return playerCard[getNumCardsInHand() - 1 ];
+	}
+	
+	
 }
