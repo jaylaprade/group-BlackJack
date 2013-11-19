@@ -1,0 +1,64 @@
+/**
+ * AWT Sample application
+ *
+ * @author 
+ * @version 1.00 13/11/10
+ */
+public class BJdriver {
+    
+    public static void main(String[] args) {
+    	
+    	
+/** METHOD from Deck class
+ *	Deck.getDeck()
+ */
+
+
+//Intro and rules
+System.out.println("Welcome.. today we will be playing blackjack.");
+System.out.println("Ok ladies and gentlemen. The House rules are as follows..");
+System.out.println("We will be playing an in-hole game with a hard seventeen.");
+System.out.println("This means that my second card will remain face down " +
+					"unless I have blackjack and then I will flip both cards "+
+					"face up. Hard seventeen means that I will hit on any "+
+					"hand with a point value less than or equal to seventeen.");
+System.out.println("Let us begin");
+
+//Player intake (number of players and name of players)
+System.out.println("How many players will be joining in this game?");
+//Possibly an array for input. I think I can make this if y'all have any questions
+
+//Players input name, could put inside of a for statement with i being the increment
+System.out.println("Player [i]'s name: ");
+//Could assign these to a class within player that holds an array table that contains
+//both the players name and the players position on the table
+//(first left of dealer is 1st and the first right of dealer is last)
+
+/** METHOD from Player class	)
+ *  Player.getCard()			)
+ */	//							)  These two methods will be repeated in a for loop
+//								)  for each of the players until the players have 2
+/** METHOD from Dealer class	)  cards each.
+ *	Dealer.getPoints()			}
+ */
+ 
+/** METHOD from Dealer class
+ *  Dealer.getFirstCards()
+ *  Dealer.getPoints()
+ */
+ 
+ 
+/** METHOD for betting ) within a for loop to assign a bet for each player
+ *
+ */
+ 
+/** METHOD {boolean} from player class
+ *	Player.hitStay()
+ */ 
+ 
+
+ 
+ 
+ 
+    }
+}
