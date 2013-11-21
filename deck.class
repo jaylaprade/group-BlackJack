@@ -19,6 +19,10 @@ public class deck {
 		Chapter 14 has ArrayLists, we might consult with the instructor about that.	Basically you 
 		all of the numbers 1-12 to this arraylist and then run the command shuffle.
 	
+	
+		// I definitely agree with this piece above^^
+		   Also it would be pretty easy to have a two or three dimensional array
+		   that holds the face value as well
 	}
 
 */
