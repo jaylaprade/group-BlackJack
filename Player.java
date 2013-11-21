@@ -1,4 +1,3 @@
-
 public class Player 
 {
 	private String playerName = "";
@@ -61,6 +60,14 @@ public class Player
 		
 		return playerCard[getNumCardsInHand() - 1 ];
 	}
+	
+	/**
+	 * Hey Jay, I was just wondering if you could put a return method within your player class for
+	 * individual cards so that the individual cards can be used outside of your class. 
+	 * Gracias dudenstein
+	 * 
+	 * @comment by Ryan
+	 * /
 	
 	
 }
