@@ -1,0 +1,67 @@
+import java.util.Scanner;
+public class BlackJack2 {
+
+	public static void main(String[] args) {
+		Scanner keyboard = new Scanner(System.in);
+		
+	System.out.println("Please enter the amount of players");
+	int players = keyboard.nextInt();
+	
+	String[] player = new String[players];
+	int[] bet = new int[players];
+	
+	
+	for(int i = 0; i < player.length; i++)
+	{
+		int p = i + 1;
+		player[i] = keyboard.nextLine();
+		System.out.println("Please enter player " +p+ "'s name");
+	//	player[i] = keyboard.nextLine();
+	}
+	int lp = players - 1;
+	player[lp] = keyboard.nextLine();
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*	Deck2 p1Deck = new Deck2();
+		Deck2 p2Deck = new Deck2();
+		Deck2 p3Deck = new Deck2();
+		 
+		
+	System.out.println("Please enter player 1's name");
+	String name1 = keyboard.nextLine();
+	
+	System.out.println("Please enter player 2's name");
+	String name2 = keyboard.nextLine();
+	
+	System.out.println("Please enter player 3's name");
+	String name3 = keyboard.nextLine();
+	
+	Player2 player1 = new Player2(name1, p1Deck.getCard(0), p1Deck.getCard(1));
+	Player2 player2 = new Player2(name2, p2Deck.getCard(0), p2Deck.getCard(1));
+	Player2 player3 = new Player2(name3, p3Deck.getCard(0), p3Deck.getCard(1));
+	
+**/
+	
+
+	
+	
+	
+
+
+
+
+
+
+			
+		
+
+	}
+
+}
