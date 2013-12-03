@@ -1,0 +1,105 @@
+import java.util.Scanner;
+public class BlackJack2 {
+
+	public static void main(String[] args) {
+		Scanner keyboard = new Scanner(System.in);
+		Scanner keyboard2 = new Scanner(System.in);
+		Deck2 deck1 = new Deck2();
+		Deck2 deck2 = new Deck2();
+		Deck2 deck3 = new Deck2();
+		Deck2 deck4 = new Deck2();
+		Deck2 deck5 = new Deck2();
+		Deck2 deck6 = new Deck2();
+		
+	System.out.println("Please enter the amount of players");
+	int players = keyboard.nextInt();
+	
+	String[] player = new String[players];
+	int[] bet = new int[players];
+	
+
+	for(int i = 0; i < player.length; i++)
+	{
+		int p = i + 1;
+		//player[i] = keyboard.nextLine();
+		System.out.println("Please enter player " +p+ "'s name");
+		player[i] = keyboard2.nextLine();
+	}
+
+	//int lp = players - 1;
+	//player[lp] = keyboard.nextLine();
+	
+//System.out.println("");
+//int daiel = keyboard.nextInt();
+
+	for(int i = 0; i < player.length; i++)
+	{
+		int p = i + 1;
+		//bet[i] = keyboard.nextInt();
+		System.out.println(player[i] + " please enter your bet");
+		bet[i] = keyboard.nextInt();
+	}
+	
+	Player2 player1 = new Player2(player[0], deck1.getCard(0), deck1.getCard(1));
+	Player2 player2 = new Player2(player[1], deck2.getCard(0), deck2.getCard(1));
+	Player2 player3 = new Player2(player[2], deck3.getCard(0), deck3.getCard(1));
+	Player2 player4 = new Player2(player[3], deck4.getCard(0), deck4.getCard(1));
+	Player2 player5 = new Player2(player[4], deck5.getCard(0), deck5.getCard(1));
+	Player2 dealer = new Player2("Dealer", deck6.getCard(0), deck6.getCard(1));
+	
+	System.out.println("The dealer has a " +deck6.getCardFace(deck6.getCard(0))+ " and an unknown card");
+	
+	System.out.println(player[0] + " you have a " +deck1.getCardFace(deck1.getCard(0))+ 
+		" and a " +deck1.getCardFace(deck1.getCard(1)));
+	
+	System.out.println("Would you like to hit or stay?");
+	String p1HS = keyboard2.nextLine();
+	
+	for(int i = 2; p1HS.equals("hit"); i++)
+	{
+		
+		//int i = 1;
+		int p1points = player2.getScoreInHand() + deck1.getCard(i);
+		//System.out.println(player2.getScoreInHand());
+		System.out.println("You drew a " + deck1.getCardFace(deck1.getCard(i)) + " your new point total is: " +p1points );
+		System.out.println("Would you like to hit again?");
+		p1HS = keyboard2.nextLine();
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*	Deck2 p1Deck = new Deck2();
+		Deck2 p2Deck = new Deck2();
+		Deck2 p3Deck = new Deck2();
+		 
+		
+	System.out.println("Please enter player 1's name");
+	String name1 = keyboard.nextLine();
+	
+	System.out.println("Please enter player 2's name");
+	String name2 = keyboard.nextLine();
+	
+	System.out.println("Please enter player 3's name");
+	String name3 = keyboard.nextLine();
+	
+	Player2 player1 = new Player2(name1, p1Deck.getCard(0), p1Deck.getCard(1));
+	Player2 player2 = new Player2(name2, p2Deck.getCard(0), p2Deck.getCard(1));
+	Player2 player3 = new Player2(name3, p3Deck.getCard(0), p3Deck.getCard(1));
+	
+**/
+	
