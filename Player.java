@@ -12,6 +12,17 @@ public class Player
 		this.playerCard[1] = secondCard;
 	}
 	
+	/**
+	 * Im adding a method for returning a hand
+	 * @author Ryan
+	 * 
+	 * @return the player's hand in an array
+	 */
+	public int[] getHand()
+        {
+        	return(playerCard);
+        }
+        
 	public Player(String playerName)
 	{
 		this.playerName = playerName;
