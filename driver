@@ -4,42 +4,196 @@
  * @author 
  * @version 1.00 13/11/10
  */
-public class BJdriver {
+/**
+ * AWT Sample application
+ *
+ * @author 
+ * @version 1.00 13/11/27
+ */
+ 
+ import java.util.Scanner;
+ 
+public class BlackJackDriver {
     
     public static void main(String[] args) {
-    	
-    	
-/** METHOD from Deck class
- *	Deck.getDeck()
- */
+
+			Scanner keyboard = new Scanner(System.in);
+			int i = 0;
+		            
+		System.out.println("Welcome.. today we will be playing blackjack.");
+		//if statement for rules
+		System.out.println("Ok ladies and gentlemen. The House rules are as follows..");
+		System.out.println("We will be playing an in-hole game with a hard seventeen.");
+		System.out.println("This means that my second card will remain face down " +
+		                                        "unless I have blackjack and then I will flip both cards "+
+		                                        "face up. Hard seventeen means that I will hit on any "+
+		                                        "hand with a point value less than or equal to seventeen.");
+		
+		
+		System.out.println("Let us begin");
+		
+		
+		
+		
+		System.out.println("How many players will be joining in this game?");
+		int playerAmount = keyboard.nextInt();
+		
+		if(playerAmount>0)
+		{
+			String blank = keyboard.nextLine();
+			System.out.println("\n\n");
+		}
+		
+		String player[] = new String[playerAmount];
+		
+		while(i<player.length)
+		{
+			System.out.println("Please enter player "+ +(i+1)+ "'s name");
+			player[i] = keyboard.nextLine();
+			i++;
+		}
+		
+		System.out.println("\n\nPlace your initial bets ladies and gentleman");
+		//Make a betting method within dealer or just in driver
+		
+		
+		
+		
+		
+		//initialize player constructor
+		System.out.println("\n\n");
+		int firstCard, secondCard;
+		int[] hand1 = new int[11];
+		int[] hand2 = new int[11];
+		int[] hand3 = new int[11];
+		int[] hand4 = new int[11];
+		int[] hand5 = new int[11];
+		int[] hand6 = new int[11];
+		int[] hand7 = new int[11];
+		int[] hand8 = new int[11];
+		
+		int total1, total2, total3, total4, total5, total6, total7, total8;
+		total1 = 0;
+		total2 = 0;
+		total3 = 0;
+		total4 = 0;
+		total5 = 0;
+		total6 = 0;
+		total7 = 0;
+		total8 = 0;
+		
+		String players;
+		
+
+	for(i = 0; i<player.length; i++)
+	{
+		//firstCard = Deck.getCard();
+		//secondCard = Deck.getCard();
+		players = player[i];
+		if(i == 0)
+		{
+			Player entry1 = new Player(players, Deck.getCard(), Deck.getCard());
+			hand1 = entry1.getHand(); 
+				
+			Dealer points1 = new Dealer(players, 2);
+			points1.getNumberOfCards();	
+			points1.setPointsTotal(hand1);
+			total1 = points1.getPointsTotal();
+		}
+		if(i == 1)
+		{
+			Player entry2 = new Player(players, Deck.getCard(), Deck.getCard());
+			hand2 = entry2.getHand(); 	
+			
+			Dealer points2 = new Dealer(players, 2);
+			points2.getNumberOfCards();	
+			points2.setPointsTotal(hand2);
+			total2 = points2.getPointsTotal();
+		}
+		if(i == 2)
+		{
+			Player entry3 = new Player(players, Deck.getCard(), Deck.getCard());
+			hand3 = entry3.getHand(); 
+			
+			Dealer points3 = new Dealer(players, 2);
+			points3.getNumberOfCards();	
+			points3.setPointsTotal(hand3);
+			total3 = points3.getPointsTotal();	
+		}
+		if(i == 3)
+		{
+			Player entry4 = new Player(players, Deck.getCard(), Deck.getCard());
+			hand4 = entry4.getHand(); 	
+		}
+		if(i == 4)
+		{
+			Player entry5 = new Player(players, Deck.getCard(), Deck.getCard());
+			hand5 = entry5.getHand(); 	
+		}
+		if(i == 5)
+		{
+			Player entry6 = new Player(players, Deck.getCard(), Deck.getCard());
+			hand6 = entry6.getHand(); 	
+		}
+		if(i == 6)
+		{
+			Player entry7 = new Player(players, Deck.getCard(), Deck.getCard());
+			hand7 = entry7.getHand(); 	
+		}
+		if(i == 7)
+		{
+			Player entry8 = new Player(players, Deck.getCard(), Deck.getCard());
+			hand8 = entry8.getHand(); 	
+		}
+	}
+	
+	
+	//test method(hand in driver/hand in player)
+	System.out.println("\n\nPlayer1 hand");
+	for(i = 0; i<2; i++)
+	{
+		System.out.println(hand1[i]);
+	}
+	System.out.println("P1 total Points: "+ total1);
+	
+	//P2
+	System.out.println("\nPlayer2 hand");
+	for(i = 0; i<2; i++)
+	{
+		System.out.println(hand2[i]);
+	}
+	System.out.println("P2 total Points: "+ total2);
+	
+	//P3
+	System.out.println("\nPlayer3 hand");
+	for(i = 0; i<2; i++)
+	{
+		System.out.println(hand3[i]);
+	}
+	System.out.println("P3 total Points: "+ total3);
+
+	
 
 
-//Intro and rules
-System.out.println("Welcome.. today we will be playing blackjack.");
-System.out.println("Ok ladies and gentlemen. The House rules are as follows..");
-System.out.println("We will be playing an in-hole game with a hard seventeen.");
-System.out.println("This means that my second card will remain face down " +
-					"unless I have blackjack and then I will flip both cards "+
-					"face up. Hard seventeen means that I will hit on any "+
-					"hand with a point value less than or equal to seventeen.");
-System.out.println("Let us begin");
 
-//Player intake (number of players and name of players)
-System.out.println("How many players will be joining in this game?");
-//Possibly an array for input. I think I can make this if y'all have any questions
 
-//Players input name, could put inside of a for statement with i being the increment
-System.out.println("Player [i]'s name: ");
-//Could assign these to a class within player that holds an array table that contains
-//both the players name and the players position on the table
-//(first left of dealer is 1st and the first right of dealer is last)
 
-/** METHOD from Player class	)
- *  Player.getCard()			)
- */	//							)  These two methods will be repeated in a for loop
-//								)  for each of the players until the players have 2
-/** METHOD from Dealer class	)  cards each.
- *	Dealer.getPoints()			}
+
+
+
+	}
+	
+	
+
+	
+}
+
+/** METHOD from Player class        )
+ *  Player.getCard()                        )
+ */        //                                                        )  These two methods will be repeated in a for loop
+//                                                                )  for each of the players until the players have 2
+/** METHOD from Dealer class        )  cards each.
+ *        Dealer.getPoints()                        }
  */
  
 /** METHOD from Dealer class
@@ -53,12 +207,6 @@ System.out.println("Player [i]'s name: ");
  */
  
 /** METHOD {boolean} from player class
- *	Player.hitStay()
+ *        Player.hitStay()
  */ 
  
-
- 
- 
- 
-    }
-}
