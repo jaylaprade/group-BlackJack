@@ -1,0 +1,532 @@
+/** IN PROGRESS
+ *
+ * @author Ryan Stelzner
+ * @version 1.00 13/11/27
+ */
+ 
+ import java.util.Scanner;
+ 
+public class BlackJackDriver {
+	
+	public static final double BUY_IN = 0.25;
+    
+    public static void main(String[] args) {
+
+			Scanner keyboard = new Scanner(System.in);
+			
+			int gameNum = 1;
+			double playerBet;
+			
+			String answer_HS = "";
+			boolean bool_HS;
+			int tempCard;
+			
+			int i = 0;
+			int x = 0;
+		            
+		System.out.println("Welcome.. today we will be playing blackjack.\n");
+		//if statement for rules
+		System.out.println(" Ok ladies and gentlemen. The House rules are as follows...");
+		System.out.println("We will be playing an in-hole game with a hard \nseventeen.");
+		System.out.print(" This means that my second card will remain face down " +
+		                                        "\nunless I have blackjack and then I will flip both cards "+
+		                                        "\nface up. Hard seventeen means that I will hit on any "+
+		                                        "\nhand with a point value less than or equal to seventeen.");
+		
+		
+		System.out.println("\n\n      ---Let us begin---");
+		
+		//betting constructor per game
+		Betting firstGame = new Betting(gameNum, BUY_IN);
+				
+		
+		System.out.println("How many players will be joining in this game?");
+		int playerAmount = keyboard.nextInt();
+		
+		//eats a line like pacman motherfuckers(enables nextInput)
+		if(playerAmount>0)
+		{
+			String blank = keyboard.nextLine();
+			System.out.println("\n\n");
+		}
+		
+		//initializes a String array to keep the player's names together
+		String player[] = new String[playerAmount];
+		//input player's names
+		while(i<player.length)
+		{
+			System.out.println("Please enter player "+ +(i+1)+ "'s name");
+			player[i] = keyboard.nextLine();
+			i++;
+		}
+		
+		//intial round of betting
+		System.out.println("\n\nThe buy-in is $"+BUY_IN);
+		System.out.println("Place your initial bets ladies and gentleman");
+		for(i = 0; i<playerAmount; i++)
+		{
+			playerBet = 0;
+			System.out.println(player[i]+" what's your bet going to be?");
+			playerBet = keyboard.nextDouble();
+			firstGame.setBet((i+1), playerBet);
+		}
+		
+		//test Betting.setBets & Betting constructor round1
+		double[] testSetBet = new double[9];
+		testSetBet = firstGame.getAllBets();
+		
+		System.out.println("\n\n--------------------------------");
+		System.out.println("--------------------------------");
+		System.out.println("Test Bets\n");
+		
+		System.out.println("Dealer: $" + testSetBet[0]);
+		
+		for(i=0, x = 1; i<playerAmount; i++, x++)
+		{
+			System.out.println(player[i]+": $"+testSetBet[x]);
+		}
+		
+		System.out.println("--------------------------------");
+		System.out.println("--------------------------------");
+		
+		System.out.println("\n\n");
+		
+		
+		
+//-----------------------OBJECT_INITIALIZATION--------------------------------
+		
+		
+//9 arrays within dealer class so that arrays between classes can be passed back and forth
+		int[] handDealer = new int[11];
+		int[] hand1 = new int[11];
+		int[] hand2 = new int[11];
+		int[] hand3 = new int[11];
+		int[] hand4 = new int[11];
+		int[] hand5 = new int[11];
+		int[] hand6 = new int[11];
+		int[] hand7 = new int[11];
+		int[] hand8 = new int[11];
+		
+//assigning the getPoints a variable
+		int pointsDealer = 0;
+		int pointsP1 = 0;
+		int pointsP2 = 0;
+		int pointsP3 = 0;
+		int pointsP4 = 0;
+		int pointsP5 = 0;
+		int pointsP6 = 0;
+		int pointsP7 = 0;
+		int pointsP8 = 0;
+		
+//assigns the concatenatingToString method a variable
+		String toStringTestDealer = "";
+		String toStringTest1 = "";
+		String toStringTest2 = "";
+		String toStringTest3 = "";
+		String toStringTest4 = "";
+		String toStringTest5 = "";
+		String toStringTest6 = "";
+		String toStringTest7 = "";
+		String toStringTest8 = "";
+		
+		
+		
+
+		
+//players' cards... seeing if this fixes it
+		int p1_C1 = Deck.getCard();
+		int p1_C2 = Deck.getCard(); 
+		int p1_C3 = Deck.getCard();
+		int p1_C4 = Deck.getCard();
+		int p1_C5 = Deck.getCard();
+
+//players' names set to empty string as to not break the array
+String player1 = " ";
+String player2 = " ";
+String player3 = " ";
+String player4 = " ";
+String player5 = " ";
+String player6 = " ";
+String player7 = " ";
+String player8 = " ";
+
+//player names set to the correct name as established within the array
+if(playerAmount>=1)
+{
+	player1 = player[0];
+	if(playerAmount>=2)
+	{
+		player2 = player[1];
+		if(playerAmount>=3)
+		{
+			player3 = player[2];
+			if(playerAmount>=4)
+			{
+				player4 = player[3];
+				if(playerAmount>=5)
+				{
+					player5 = player[4];
+					if(playerAmount>=6)
+					{
+						player6 = player[5];
+						if(playerAmount>=7)
+						{
+							player7 = player[6];
+							if(playerAmount>=8)
+							{
+								player8 = player[7];
+							}
+						}
+					}		
+				}
+			}	
+		}	
+	}
+}
+
+
+
+
+//-----------------------METHOD_INITIALIZATION--------------------------------
+
+
+//Dealer's first two
+		Player entryDealer = new Player("Dealer", Deck.getCard(), Deck.getCard());
+		handDealer = entryDealer.getHand(); 
+				
+		Dealer dealer = new Dealer("Dealer", Deck.getCard(), Deck.getCard(),
+																 handDealer);
+		dealer.setPoints();
+		pointsDealer = dealer.getPoints();	
+		toStringTestDealer = dealer.concatenatedToString();
+
+
+//initializing players within the dealer class
+
+		
+			
+		//P1 PRIME TEST	
+		Player entry1 = new Player(player1, p1_C1, p1_C2);
+		hand1 = entry1.getHand(); 
+			
+		Dealer p1 = new Dealer(player1, Deck.getCard(), Deck.getCard(), hand1);
+		
+		System.out.println("--------------------------------");
+		System.out.println("--------------------------------");
+		System.out.println("Initialization of hand1 the double constructor"+
+														" could be the issue");
+		for(i = 0; i<11; i++)
+		{
+			System.out.println(hand1[i]);
+		}
+		System.out.println("--------------------------------");
+		System.out.println("--------------------------------");
+		
+	
+		//P2 ------------------------------------------------------------------
+		Player entry2 = new Player(player2, Deck.getCard(), Deck.getCard());
+		hand2 = entry2.getHand(); 	
+		
+		Dealer p2 = new Dealer(player2, Deck.getCard(), Deck.getCard(), hand2);
+		//P3 ------------------------------------------------------------------
+		Player entry3 = new Player(player3, Deck.getCard(), Deck.getCard());
+		hand3 = entry3.getHand(); 
+		
+		Dealer p3 = new Dealer(player3, Deck.getCard(), Deck.getCard(), hand3);
+		//P4 ------------------------------------------------------------------
+		Player entry4 = new Player(player4, Deck.getCard(), Deck.getCard());
+		hand4 = entry4.getHand(); 
+		
+		Dealer p4 = new Dealer(player4, Deck.getCard(), Deck.getCard(), hand4);
+		//P5 ------------------------------------------------------------------
+		Player entry5 = new Player(player5, Deck.getCard(), Deck.getCard());
+		hand5 = entry5.getHand(); 
+		
+		Dealer p5 = new Dealer(player5, Deck.getCard(), Deck.getCard(), hand5);
+		//P6 ------------------------------------------------------------------
+		Player entry6 = new Player(player6, Deck.getCard(), Deck.getCard());
+		hand6 = entry6.getHand();
+
+		Dealer p6 = new Dealer(player6, Deck.getCard(), Deck.getCard(), hand6);
+		//P7 ------------------------------------------------------------------
+		Player entry7 = new Player(player7, Deck.getCard(), Deck.getCard());
+		hand7 = entry7.getHand(); 	
+		
+		Dealer p7 = new Dealer(player7, Deck.getCard(), Deck.getCard(), hand7);
+		//P8 ------------------------------------------------------------------
+		Player entry8 = new Player(player8, Deck.getCard(), Deck.getCard());
+		hand8 = entry8.getHand(); 	
+		
+		Dealer p8 = new Dealer(player8, Deck.getCard(), Deck.getCard(), hand8);
+
+		
+//initializing player info (2-8 also initialize dealer class within an if)
+for(i = 0; i<player.length; i++)
+{
+	if(i == 0)
+	{
+	//	Player entry1 = new Player(players, Deck.getCard(), Deck.getCard());
+	//	hand1 = entry1.getHand(); 
+			
+	//	Dealer p1 = new Dealer(players, Deck.getCard(), Deck.getCard(), hand1);
+		p1.setPoints();
+		pointsP1 = p1.getPoints();	
+		toStringTest1 = p1.concatenatedToString();
+	}
+	if(i == 1)
+	{
+
+		p2.setPoints();
+		pointsP2 = p2.getPoints();	
+		toStringTest2 = p2.concatenatedToString();
+	}
+	if(i == 2)
+	{
+
+		p3.setPoints();
+		pointsP3 = p3.getPoints();	
+		toStringTest3 = p3.concatenatedToString();	
+	}
+	if(i == 3)
+	{
+
+		p4.setPoints();
+		pointsP4 = p4.getPoints();	
+		toStringTest4 = p4.concatenatedToString();
+	}
+	if(i == 4)
+	{
+
+		p5.setPoints();
+		pointsP5 = p5.getPoints();	
+		toStringTest5 = p5.concatenatedToString();				
+	}
+	if(i == 5)
+	{
+
+		p6.setPoints();
+		pointsP6 = p6.getPoints();	
+		toStringTest6 = p6.concatenatedToString();				
+	}
+	if(i == 6)
+	{
+
+		p7.setPoints();	
+		pointsP7 = p7.getPoints();	
+		toStringTest7 = p7.concatenatedToString();
+	}
+	if(i == 7)
+	{
+
+		p8.setPoints();	
+		pointsP8 = p8.getPoints();	
+		toStringTest8 = p8.concatenatedToString();
+	}
+}
+	System.out.println("----------------------");
+	System.out.println("----------------------");
+	System.out.println("----------------------");
+	System.out.println("\nDEALER info: ");
+	for(i = 0; i<5; i++)
+	{
+		x = (i+1);
+		System.out.println("Card "+(x)+": " + handDealer[i]);
+	}
+	System.out.println("\n---DEALER points: "+ pointsDealer+"\n");
+	System.out.println("---DEALER stats: "+ toStringTestDealer);
+	System.out.println("\n\n\n");
+	
+if(playerAmount >= 1)
+{
+	//P1
+	System.out.println("-----------");
+	System.out.println("\nP1 info: ");
+	for(i = 0; i<5; i++)
+	{
+		x = (i+1);
+		System.out.println("Card "+(x)+": " +hand1[i]);
+	}
+	System.out.println("\n---P1 points: "+ pointsP1+"\n");
+	System.out.println("---P1 stats: "+ toStringTest1);
+	
+	if(playerAmount >= 2)
+	{
+		//P2
+		System.out.println("-----------");
+		System.out.println("\nP2 info: ");
+		for(i = 0; i<5; i++)
+		{
+			x = (i+1);
+			System.out.println("Card "+(x)+": " +hand2[i]);
+		}
+		System.out.println("\n---P2 points: "+ pointsP2+"\n");
+		System.out.println("---P2 stats: "+ toStringTest2);
+		
+		if(playerAmount >= 3)
+		{
+			//P3
+			System.out.println("-----------");
+			System.out.println("\nP3 info: ");
+			for(i = 0; i<5; i++)
+			{
+				x = (i+1);
+				System.out.println("Card "+(x)+": " +hand3[i]);
+			}
+			System.out.println("\n---P3 points: "+ pointsP3+"\n");
+			System.out.println("---P3 stats: "+ toStringTest3);
+		
+			if(playerAmount >= 4)
+			{
+				//P4
+				System.out.println("\n-----------");
+				System.out.println("\nP4 info: ");
+				for(i = 0; i<5; i++)
+				{
+					x = (i+1);
+					System.out.println("Card "+(x)+": " +hand4[i]);
+				}
+				System.out.println("\n---P4 points: "+ pointsP4+"\n");
+				System.out.println("---P4 stats: "+ toStringTest4);
+				
+				if(playerAmount >= 5)
+				{
+					//P5
+					System.out.println("-----------");
+					System.out.println("\nP5 info: ");
+					for(i = 0; i<5; i++)
+					{
+						x = (i+1);
+						System.out.println("Card "+(x)+": " +hand5[i]);
+					}
+					System.out.println("\n---P5 points: "+ pointsP5+"\n");
+					System.out.println("---P5 stats: "+ toStringTest5);
+	
+					if(playerAmount >= 6)
+					{
+						//P6
+						System.out.println("-----------");
+						System.out.println("\nP6 info: ");
+						for(i = 0; i<5; i++)
+						{
+							x = (i+1);
+							System.out.println("Card "+(x)+": " +hand6[i]);
+						}
+						System.out.println("\n---P6 points: "+ pointsP6+"\n");
+						System.out.println("---P6 stats: "+ toStringTest6);
+						
+						if(playerAmount >= 7)
+						{
+							//P7
+							System.out.println("-----------");
+							System.out.println("\nP7 info: ");
+							for(i = 0; i<5; i++)
+							{
+								x = (i+1);
+								System.out.println("Card "+(x)+": " +hand7[i]);
+							}
+							System.out.println("\n---P7 points: "+ pointsP7+"\n");
+							System.out.println("---P7 stats: "+ toStringTest7);
+							
+							if(playerAmount >= 8)
+							{
+								//P6
+								System.out.println("-----------");
+								System.out.println("\nP8 info: ");
+								for(i = 0; i<5; i++)
+								{
+									x = (i+1);
+									System.out.println("Card "+(x)+": " +hand8[i]);
+								}
+								System.out.println("\n---P8 points: "+ pointsP8+"\n");
+								System.out.println("---P8 stats: "+ toStringTest8);
+
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+System.out.println("----------------------");
+System.out.println("----------------------");
+
+
+//----------------------------------HOS test-----------------------------------	
+	
+
+//Hit or stay for all players followed by hit or stay for dealer
+//			This is just for player one right now... will add...
+//--------------------------------------------------------------
+		
+//eats a line like pacman motherfuckers(enables nextInput)
+		if(playerAmount>0)
+		{
+			String blank = keyboard.nextLine();
+			System.out.println("\n\n");
+		}
+		System.out.println("\n\n--------------------------------");
+		System.out.println("--------------------------------");
+		System.out.println("---------HS_Method Test---------\n");
+		
+		
+		System.out.println(player[0]+", hit or stay?"+
+				" (eventually... see comments)");
+// 'what's your move: hit, stay, doubledown, surrender etc..')");
+		
+
+		answer_HS = keyboard.nextLine();
+		bool_HS = firstGame.hitOrStay(answer_HS);
+		System.out.println(bool_HS+ " -- first input");
+		
+		if(bool_HS = true)
+		{
+			tempCard = Deck.getCard();
+			entry1.setCard(tempCard, 2);
+			hand1 = entry1.getHand();
+			p1.setHand(hand1);
+			System.out.println("firstHit: "+tempCard);
+			
+		}
+		
+			
+		if(playerAmount >= 1)
+		{
+//test array for checking if the hand passed into dealer correctly
+			int[] testArrayP1 = new int[11];
+			testArrayP1 = p1.getHand();
+			
+//just to make sure that the points are printing out correcctly
+			p1.setPoints();
+			pointsP1 = p1.getPoints();	
+			toStringTest1 = p1.concatenatedToString();
+			
+//tests that the array was changed correctly
+			for(i = 0; i<3; i++)
+			{
+				System.out.println("testArrayP1["+i+"] -- "+testArrayP1[i]);
+			}
+
+			//P1
+//another copy of the first P1 printed stats
+			System.out.println("-----------");
+			System.out.println("\nP1 info: ");
+			for(i = 0; i<5; i++)
+			{
+				x = (i+1);
+				System.out.println("Card "+(x)+": " +hand1[i]);
+			}
+			System.out.println("\n---P1 points: "+ pointsP1+"\n");
+			System.out.println("---P1 stats: "+ toStringTest1);
+		}
+	
+	
+	
+//---------------------------end of HOS test-----------------------------------	
+	
+	
+	
+	
+	
+	}
+}
