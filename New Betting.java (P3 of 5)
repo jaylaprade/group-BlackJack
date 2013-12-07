@@ -5,6 +5,7 @@ public class Betting {
 		private double[] betPool = new double[9];
 		private double placedBet;
 		private double buyIn;
+
 	
 	// Constructor will be for the game, not the individual player
 	public Betting(int gameNumber, double buyIn_Input)
@@ -37,22 +38,5 @@ public class Betting {
 		this.betPool[this.playerNum] += this.placedBet;
 	}
 	
-		public boolean hitOrStay(String hitOrStay)
-	{
-		boolean hOs = false;
-		if(hitOrStay.equalsIgnoreCase("hit"))
-		{
-			hOs = true;
-		}
-		else if(hitOrStay.equalsIgnoreCase("stay"))
-		{
-			hOs = false;
-		}
-		else
-		{
-			System.out.println("Error -- HOS M.");
-		}
-		
-		return hOs;
-	}
+
 }
