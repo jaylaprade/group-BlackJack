@@ -8,13 +8,13 @@ public class Dealer extends Player{
 	 * ---New---
 	 * 1. [x]Total Points
 	 * 2. [x]Assign Suit
-	 * 3. []ToString & Concatenation of Number, Suit, Points for hand
+	 * 3. [x]ToString & Concatenation of Number, Suit, Points for hand
 	 *
 	 *
 	 * ---Old---
-	 * 1. []Push or Stay on Seventeen. Hard Seventeen (just do in driver?)
-	 * 2. []Start creating ascii art for cards
-	 * 3. []Make array for player's hand in Player class
+	 * 1. [x]Push or Stay on Seventeen. Hard Seventeen (just do in driver?)
+	 * 2. [o]Start creating ascii art for cards
+	 * 3. [x]Make array for player's hand in Player class
 	 *
 	 *
 	 *
@@ -22,10 +22,15 @@ public class Dealer extends Player{
 	private static final String BUST = "BUST";
 	private int firstCard, secondCard, points, pointsWithAce, inHandNum;
 	private int setCardToHand;
-	public int[] hand = new int[11];
 	private String[] suitArray = new String[10];
 	private String[] suitCache = new String[4];
 	private Random random = new Random();
+	
+	public boolean hOs = false;
+	public int numberOfCards;
+	public int tempIndex;
+	public int[] hand = new int[11];
+	
 	//c0, c1, etc... are random numbers assigned to each card which will match the numeric for toString
 	int c0, c1, c2, c3, c4, c5, c6, c7, c8, c9;
 //	private String suitDealer;
@@ -137,10 +142,26 @@ public class Dealer extends Player{
 			this.hand[i] = handIn[i];
 		}
 	}
-	
+	//i want to delete this but its late in the evenin =(
 	public int getInHandNum()
 	{
 		return this.inHandNum;
+	}
+	
+	public int getQuantityCards()
+	{
+		this.numberOfCards = 0;
+		this.tempIndex = 0;
+		for (int i = 0; i<this.hand.length; i++)
+		{
+			this.tempIndex = this.hand[i];
+			if(this.tempIndex>0)
+			{
+				this.numberOfCards++;
+			}
+		}
+		
+		return this.numberOfCards;
 	}
 	
 	public int getPoints()
@@ -157,7 +178,7 @@ public class Dealer extends Player{
 	{
 		this.points = 0;
 		int ace = 0;
-		for (int i = 0; i<5; i++)
+		for (int i = 0; i<11; i++)
 		{
 			this.points += hand[i];
 			if(this.hand[i]==1)
@@ -179,7 +200,7 @@ public class Dealer extends Player{
 		
 		String output = "Points: "+this.points;
 		
-		for(int i = 0; i<this.inHandNum; i++)
+		for(int i = 0; i<11; i++)
 		{
 			if(hand[i] == 1)
 			{
@@ -238,7 +259,17 @@ public class Dealer extends Player{
 	{
 		String handString = "";
 		int x;
-		for (int i = 0; i<5; i++)
+		int numberOfCards = 0;
+		int tempIndex = 0;
+		for (int i = 0; i<this.hand.length; i++)
+		{
+			tempIndex = this.hand[i];
+			if(tempIndex>0)
+			{
+				numberOfCards++;
+			}
+		}
+		for (int i = 0; i<numberOfCards; i++)
 		{
 			x = i+1;
 			handString += "\nCard"+(x)+": " + (this.hand[i]) + " of " + (this.suitArray[i]);
@@ -246,6 +277,25 @@ public class Dealer extends Player{
 		handString += "\n\nTotal Points in Hand: "+pointString();
 		
 		return handString;
+	}
+	
+	//moved from betting class
+	public boolean hitOrStay(String hitOrStay)
+	{
+		if(hitOrStay.equalsIgnoreCase("hit"))
+		{
+			this.hOs = true;
+		}
+		else if(hitOrStay.equalsIgnoreCase("stay"))
+		{
+			this.hOs = false;
+		}
+		else
+		{
+			System.out.println("Error -- HOS M.");
+		}
+		
+		return this.hOs;
 	}
 
 	
