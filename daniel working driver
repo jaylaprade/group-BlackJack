@@ -1,0 +1,407 @@
+import java.util.Scanner;
+public class BlackJack2 {
+
+	public static void main(String[] args) {
+		Scanner keyboard = new Scanner(System.in);
+		Scanner keyboard2 = new Scanner(System.in);
+		Deck2 deck1 = new Deck2();
+		Deck2 deck2 = new Deck2();
+		Deck2 deck3 = new Deck2();
+		Deck2 deck4 = new Deck2();
+		Deck2 deck5 = new Deck2();
+		Deck2 deck6 = new Deck2();
+		
+	System.out.println("Please enter the amount of players");
+	int players = keyboard.nextInt();
+	
+	String[] player = new String[players];
+	int[] bet = new int[players];
+	
+
+	for(int i = 0; i < player.length; i++)
+	{
+		int p = i + 1;
+		//player[i] = keyboard.nextLine();
+		System.out.println("Please enter player " +p+ "'s name");
+		player[i] = keyboard2.nextLine();
+	}
+
+	//int lp = players - 1;
+	//player[lp] = keyboard.nextLine();
+	
+//System.out.println("");
+//int daiel = keyboard.nextInt();
+
+	for(int i = 0; i < player.length; i++)
+	{
+		int p = i + 1;
+		System.out.println(player[i] + " please enter your bet");
+		bet[i] = keyboard.nextInt();
+	}
+	
+	Player2 player1 = new Player2(player[0], deck1.getCard(0), deck1.getCard(1));
+	Player2 player2 = new Player2(player[1], deck2.getCard(0), deck2.getCard(1));
+	Player2 player3 = new Player2(player[2], deck3.getCard(0), deck3.getCard(1));
+	Player2 player4 = new Player2(player[3], deck4.getCard(0), deck4.getCard(1));
+	Player2 player5 = new Player2(player[4], deck5.getCard(0), deck5.getCard(1));
+	Player2 dealer = new Player2("Dealer", deck6.getCard(0), deck6.getCard(1));
+	
+	System.out.println("");
+	System.out.println("The dealer has a " +deck6.getCardFace(deck6.getCard(0))+ " and an unknown card");
+	
+	System.out.println("");
+	System.out.println(player[0] + " you have a " +deck1.getCardFace(deck1.getCard(0))+ 
+		" and a " +deck1.getCardFace(deck1.getCard(1)));
+	
+	System.out.println("Would you like to hit or stay?");
+	String p1HS = keyboard2.nextLine();
+	int player1tempPoints = player1.getScoreInHand(); 
+	for(int i = 2; p1HS.equals("hit"); i++)
+	{
+		
+	//	int i = 2;
+		 player1tempPoints = player1tempPoints + deck1.getCard(i);
+		 int player1Ace = player1tempPoints - 11;
+		 
+		 if(deck1.getCard(i) == 11 && player1Ace > 10)
+		 {
+		 	player1tempPoints = player1tempPoints - 10;
+		 }
+		 
+		//int p1points2 = p1points + deck1.getCard(i);
+		//System.out.println(player2.getScoreInHand());
+		System.out.println("You drew a " + deck1.getCardFace(deck1.getCard(i)) + " your new point total is: " +player1tempPoints );
+		
+		if(player1tempPoints > 21)
+		{
+			System.out.println( player[0]+ " you bust! with a score of " +player1tempPoints);
+			player1tempPoints = -1;
+			break;
+		}
+		
+		else
+		{
+			System.out.println("Would you like to hit again?");
+			p1HS = keyboard2.nextLine();	
+		}
+		
+		
+		
+		
+		
+	}
+	
+	System.out.println("");
+	System.out.println(player[1] + " you have a " +deck2.getCardFace(deck2.getCard(0))+ 
+		" and a " +deck2.getCardFace(deck2.getCard(1)));
+	
+	System.out.println("Would you like to hit or stay?");
+	String p2HS = keyboard2.nextLine();
+	int player2tempPoints = player2.getScoreInHand(); 
+	for(int i = 2; p2HS.equals("hit"); i++)
+	{
+		
+	//	int i = 2;
+		 player2tempPoints = player2tempPoints + deck2.getCard(i);
+		 int player2Ace = player2tempPoints - 11;
+		 
+		 if(deck2.getCard(i) == 11 && player2Ace > 10)
+		 {
+		 	player2tempPoints = player2tempPoints - 10;
+		 }
+		 
+		//int p1points2 = p1points + deck1.getCard(i);
+		//System.out.println(player2.getScoreInHand());
+		System.out.println("You drew a " + deck2.getCardFace(deck2.getCard(i)) + " your new point total is: " +player2tempPoints );
+		
+		if(player2tempPoints > 21)
+		{
+			System.out.println( player[1]+ " you bust! with a score of " +player2tempPoints);
+			player2tempPoints = -1;
+			break;
+		}
+		
+		else
+		{
+			System.out.println("Would you like to hit again?");
+			p2HS = keyboard2.nextLine();	
+		}
+		
+		
+		
+		
+		
+	}
+	
+	
+	System.out.println("");
+		System.out.println(player[2] + " you have a " +deck3.getCardFace(deck3.getCard(0))+ 
+		" and a " +deck3.getCardFace(deck3.getCard(1)));
+	
+	System.out.println("Would you like to hit or stay?");
+	String p3HS = keyboard2.nextLine();
+	int player3tempPoints = player3.getScoreInHand(); 
+	for(int i = 2; p3HS.equals("hit"); i++)
+	{
+		
+	//	int i = 2;
+		 player3tempPoints = player3tempPoints + deck3.getCard(i);
+		 int player3Ace = player3tempPoints - 11;
+		 
+		 if(deck3.getCard(i) == 11 && player3Ace > 10)
+		 {
+		 	player3tempPoints = player3tempPoints - 10;
+		 }
+		 
+		//int p1points2 = p1points + deck1.getCard(i);
+		//System.out.println(player2.getScoreInHand());
+		System.out.println("You drew a " + deck3.getCardFace(deck3.getCard(i)) + " your new point total is: " +player3tempPoints );
+		
+		if(player3tempPoints > 21)
+		{
+			System.out.println( player[2]+ " you bust! with a score of " +player3tempPoints);
+			player3tempPoints = -1;
+			break;
+		}
+		
+		else
+		{
+			System.out.println("Would you like to hit again?");
+			p3HS = keyboard2.nextLine();	
+		}
+		
+		
+		
+		
+		
+	}
+	
+	System.out.println("");
+		System.out.println(player[3] + " you have a " +deck4.getCardFace(deck4.getCard(0))+ 
+		" and a " +deck4.getCardFace(deck4.getCard(1)));
+	
+	System.out.println("Would you like to hit or stay?");
+	String p4HS = keyboard2.nextLine();
+	int player4tempPoints = player4.getScoreInHand(); 
+	for(int i = 2; p4HS.equals("hit"); i++)
+	{
+		
+	//	int i = 2;
+		 player4tempPoints = player4tempPoints + deck4.getCard(i);
+		 int player4Ace = player4tempPoints - 11;
+		 
+		 if(deck4.getCard(i) == 11 && player4Ace > 10)
+		 {
+		 	player4tempPoints = player4tempPoints - 10;
+		 }
+		 
+		//int p1points2 = p1points + deck1.getCard(i);
+		//System.out.println(player2.getScoreInHand());
+		System.out.println("You drew a " + deck4.getCardFace(deck4.getCard(i)) + " your new point total is: " +player4tempPoints );
+		
+		if(player4tempPoints > 21)
+		{
+			System.out.println( player[3]+ " you bust! with a score of " +player4tempPoints);
+			player4tempPoints = -1;
+			break;
+		}
+		
+		else
+		{
+			System.out.println("Would you like to hit again?");
+			p4HS = keyboard2.nextLine();	
+		}
+		
+		
+		
+		
+		
+	}
+	
+	
+	System.out.println("");
+		System.out.println(player[4] + " you have a " +deck5.getCardFace(deck5.getCard(0))+ 
+		" and a " +deck5.getCardFace(deck5.getCard(1)));
+	
+	System.out.println("Would you like to hit or stay?");
+	String p5HS = keyboard2.nextLine();
+	int player5tempPoints = player5.getScoreInHand(); 
+	for(int i = 2; p5HS.equals("hit"); i++)
+	{
+		
+	//	int i = 2;
+		 player5tempPoints = player5tempPoints + deck5.getCard(i);
+		 int player5Ace = player5tempPoints - 11;
+		 
+		 if(deck5.getCard(i) == 11 && player5Ace > 10)
+		 {
+		 	player5tempPoints = player5tempPoints - 10;
+		 }
+		 
+		//int p1points2 = p1points + deck1.getCard(i);
+		//System.out.println(player2.getScoreInHand());
+		System.out.println("You drew a " + deck5.getCardFace(deck5.getCard(i)) + " your new point total is: " +player5tempPoints );
+		
+		if(player5tempPoints > 21)
+		{
+			System.out.println( player[4]+ " you bust! with a score of " +player5tempPoints);
+			player5tempPoints = -1;
+			break;
+		}
+		
+		else
+		{
+			System.out.println("Would you like to hit again?");
+			p5HS = keyboard2.nextLine();	
+		}
+		
+		
+		
+		
+		
+	}
+	
+	
+	System.out.println("");
+	System.out.println("Now lets see what the dealer has!");
+	
+	System.out.println("The dealer has a " +deck6.getCardFace(deck6.getCard(0))+ " and a " +deck6.getCardFace(deck6.getCard(1)));
+	
+	int dealerTempPoints = dealer.getScoreInHand();
+	for(int i = 2; dealerTempPoints <= 17; i++)
+	{
+		
+	//	int i = 2;
+		 dealerTempPoints = dealerTempPoints + deck6.getCard(i);
+		 int dealerAce = dealerTempPoints - 11;
+		 
+		 if(deck6.getCard(i) == 11 && dealerAce > 10)
+		 {
+		 	dealerTempPoints = dealerTempPoints - 10;
+		 }
+		 
+		//int p1points2 = p1points + deck1.getCard(i);
+		//System.out.println(player2.getScoreInHand());
+		System.out.println("The dealer drew a " + deck6.getCardFace(deck6.getCard(i)) + " for a new point total of: " +dealerTempPoints );
+		
+		if(dealerTempPoints > 21)
+		{
+			System.out.println("The dealer bust! with a score of " +player5tempPoints);
+			dealerTempPoints = 0;
+			break;
+		}
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	System.out.println("");
+	if(player1tempPoints > dealerTempPoints)
+	{
+		int player1Win = bet[0] * 2;
+		System.out.println(player[0] + " won " +player1Win);
+	}
+	
+	else if(player1tempPoints < dealerTempPoints)
+	{
+		int player1Lost = bet[0];
+		System.out.println(player[0]+ " lost " +player1Lost);
+	}
+	
+	else if(player1tempPoints == dealerTempPoints)
+	{
+		System.out.println(player[0] + " you pushed");
+	}
+	
+	System.out.println("");
+	if(player2tempPoints > dealerTempPoints)
+	{
+		int player2Win = bet[1] * 2;
+		System.out.println(player[1] + " won " +player2Win);
+	}
+	
+	else if(player2tempPoints < dealerTempPoints)
+	{
+		int player2Lost = bet[1];
+		System.out.println(player[1]+ " lost " +player2Lost);
+	}
+	
+	else if(player2tempPoints == dealerTempPoints)
+	{
+		System.out.println(player[1] + " you pushed");
+	}	
+	
+	System.out.println("");
+	if(player3tempPoints > dealerTempPoints)
+	{
+		int player3Win = bet[2] * 2;
+		System.out.println(player[2] + " won " +player3Win);
+	}
+	
+	else if(player3tempPoints < dealerTempPoints)
+	{
+		int player3Lost = bet[2];
+		System.out.println(player[2]+ " lost " +player3Lost);
+	}
+	
+	else if(player3tempPoints == dealerTempPoints)
+	{
+		System.out.println(player[2] + " you pushed");
+	}
+	
+	System.out.println("");
+	if(player4tempPoints > dealerTempPoints)
+	{
+		int player4Win = bet[3] * 2;
+		System.out.println(player[3] + " won " +player4Win);
+	}
+	
+	else if(player4tempPoints < dealerTempPoints)
+	{
+		int player4Lost = bet[3];
+		System.out.println(player[3]+ " lost " +player4Lost);
+	}
+	
+	else if(player4tempPoints == dealerTempPoints)
+	{
+		System.out.println(player[3] + " you pushed");
+	}
+
+	System.out.println("");
+	if(player5tempPoints > dealerTempPoints)
+	{
+		int player5Win = bet[4] * 2;
+		System.out.println(player[4] + " won " +player5Win);
+	}
+	
+	else if(player5tempPoints < dealerTempPoints)
+	{
+		int player5Lost = bet[4];
+		System.out.println(player[4]+ " lost " +player5Lost);
+	}
+	
+	else if(player5tempPoints == dealerTempPoints)
+	{
+		System.out.println(player[4] + " you pushed");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+		
+
+	}
+
+}
