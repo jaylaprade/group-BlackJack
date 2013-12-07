@@ -1,9 +1,14 @@
-/** IN PROGRESS
+/**
  *
- * @author Ryan Stelzner
- * @version 1.00 13/11/27
+ * TO DO LIST
+ * [] Add the double down, split, surrender and any other choices the player has to hOs
+ * [] Loop the whole program so that people can leave at any time and the remaining players can stay
+ *		-You can also make this so that one player can step out and one can join
+ * [] Make it so when "points with Ace" prints, it prints with 1Ace as 11, 2Ace as 11 etc.
+ *
  */
  
+ import java.util.Random;
  import java.util.Scanner;
  
 public class BlackJackDriver {
@@ -13,7 +18,9 @@ public class BlackJackDriver {
     public static void main(String[] args) {
 
 			Scanner keyboard = new Scanner(System.in);
+			Random random = new Random();
 			
+			int dealerProbability = 0;
 			int gameNum = 1;
 			double playerBet;
 			
@@ -75,19 +82,21 @@ public class BlackJackDriver {
 		double[] testSetBet = new double[9];
 		testSetBet = firstGame.getAllBets();
 		
-		System.out.println("\n\n--------------------------------");
-		System.out.println("--------------------------------");
+		System.out.println("\n----------end(line79)----------");
+		System.out.println("________________________________\n\n");
+		
+		System.out.println("---------start(line82)----------\n\n");
 		System.out.println("Test Bets\n");
 		
-		System.out.println("Dealer: $" + testSetBet[0]);
+		System.out.println("House: $" + testSetBet[0]);
 		
 		for(i=0, x = 1; i<playerAmount; i++, x++)
 		{
 			System.out.println(player[i]+": $"+testSetBet[x]);
 		}
 		
-		System.out.println("--------------------------------");
-		System.out.println("--------------------------------");
+		System.out.println("\n----------end(line92)----------");
+		System.out.println("________________________________\n\n");
 		
 		System.out.println("\n\n");
 		
@@ -211,16 +220,17 @@ if(playerAmount>=1)
 			
 		Dealer p1 = new Dealer(player1, Deck.getCard(), Deck.getCard(), hand1);
 		
-		System.out.println("--------------------------------");
-		System.out.println("--------------------------------");
-		System.out.println("Initialization of hand1 the double constructor"+
-														" could be the issue");
-		for(i = 0; i<11; i++)
-		{
-			System.out.println(hand1[i]);
-		}
-		System.out.println("--------------------------------");
-		System.out.println("--------------------------------");
+		System.out.println("-----initializePlayerHands------");
+		System.out.println("------------(start)-------------");
+
+														
+// Was a test print out...
+
+//		for(i = 0; i<11; i++)
+//		{
+//			System.out.println(hand1[i]);
+//		}
+
 		
 	
 		//P2 ------------------------------------------------------------------
@@ -258,13 +268,28 @@ if(playerAmount>=1)
 		hand8 = entry8.getHand(); 	
 		
 		Dealer p8 = new Dealer(player8, Deck.getCard(), Deck.getCard(), hand8);
+		
+		System.out.println("--------------------------------");
+		System.out.println("--------------------------------");
 
 		
 //initializing player info (2-8 also initialize dealer class within an if)
+int d_Q;
+int p1_Q;
+int p2_Q;
+int p3_Q;
+int p4_Q;
+int p5_Q;
+int p6_Q;
+int p7_Q;
+int p8_Q;
+
 for(i = 0; i<player.length; i++)
 {
 	if(i == 0)
 	{
+	//  These Three methods || constructors are now called upon outside of this if
+	
 	//	Player entry1 = new Player(players, Deck.getCard(), Deck.getCard());
 	//	hand1 = entry1.getHand(); 
 			
@@ -323,11 +348,10 @@ for(i = 0; i<player.length; i++)
 		toStringTest8 = p8.concatenatedToString();
 	}
 }
-	System.out.println("----------------------");
-	System.out.println("----------------------");
-	System.out.println("----------------------");
+
 	System.out.println("\nDEALER info: ");
-	for(i = 0; i<5; i++)
+	d_Q = dealer.getQuantityCards();
+	for(i = 0; i<d_Q; i++)
 	{
 		x = (i+1);
 		System.out.println("Card "+(x)+": " + handDealer[i]);
@@ -339,106 +363,130 @@ for(i = 0; i<player.length; i++)
 if(playerAmount >= 1)
 {
 	//P1
-	System.out.println("-----------");
-	System.out.println("\nP1 info: ");
-	for(i = 0; i<5; i++)
-	{
-		x = (i+1);
-		System.out.println("Card "+(x)+": " +hand1[i]);
-	}
-	System.out.println("\n---P1 points: "+ pointsP1+"\n");
-	System.out.println("---P1 stats: "+ toStringTest1);
+	p1_Q = p1.getQuantityCards();
+	System.out.println("--------------------------------------------");
+//	System.out.println("\nP1 info: "); 
+//	for(i = 0; i<p1_Q; i++)
+//	{
+//		x = (i+1);
+//		System.out.println("Card "+(x)+": " +hand1[i]);
+//	}
+//	System.out.println("\n---P1 points: "+ pointsP1+"\n");
+	System.out.println("P1 stats: "+ toStringTest1);
+	System.out.println("\nP1 bet: $"+testSetBet[1]);
+	System.out.println("\n\n");
 	
 	if(playerAmount >= 2)
 	{
 		//P2
-		System.out.println("-----------");
-		System.out.println("\nP2 info: ");
-		for(i = 0; i<5; i++)
-		{
-			x = (i+1);
-			System.out.println("Card "+(x)+": " +hand2[i]);
-		}
-		System.out.println("\n---P2 points: "+ pointsP2+"\n");
-		System.out.println("---P2 stats: "+ toStringTest2);
+		p2_Q = p2.getQuantityCards();
+		System.out.println("--------------------------------------------");
+//		System.out.println("\nP2 info: ");
+//		for(i = 0; i<p2_Q; i++)
+//		{
+//			x = (i+1);
+//			System.out.println("Card "+(x)+": " +hand2[i]);
+//		}
+//		System.out.println("\n---P2 points: "+ pointsP2+"\n");
+		System.out.println("P2 stats: "+ toStringTest2);
+		System.out.println("\nP2 bet: $"+testSetBet[2]);
+		System.out.println("\n\n");
 		
 		if(playerAmount >= 3)
 		{
 			//P3
-			System.out.println("-----------");
-			System.out.println("\nP3 info: ");
-			for(i = 0; i<5; i++)
-			{
-				x = (i+1);
-				System.out.println("Card "+(x)+": " +hand3[i]);
-			}
-			System.out.println("\n---P3 points: "+ pointsP3+"\n");
-			System.out.println("---P3 stats: "+ toStringTest3);
-		
+			p3_Q = p3.getQuantityCards();
+			System.out.println("--------------------------------------------");
+//			System.out.println("\nP3 info: ");
+//			for(i = 0; i<p3_Q; i++)
+//			{
+//				x = (i+1);
+//				System.out.println("Card "+(x)+": " +hand3[i]);
+//			}
+//			System.out.println("\n---P3 points: "+ pointsP3+"\n");
+			System.out.println("P3 stats: "+ toStringTest3);
+			System.out.println("\nP3 bet: $"+testSetBet[3]);
+			System.out.println("\n\n");
+			
 			if(playerAmount >= 4)
 			{
 				//P4
-				System.out.println("\n-----------");
-				System.out.println("\nP4 info: ");
-				for(i = 0; i<5; i++)
-				{
-					x = (i+1);
-					System.out.println("Card "+(x)+": " +hand4[i]);
-				}
-				System.out.println("\n---P4 points: "+ pointsP4+"\n");
-				System.out.println("---P4 stats: "+ toStringTest4);
+				p4_Q = p4.getQuantityCards();
+				System.out.println("--------------------------------------------");
+//				System.out.println("\nP4 info: ");
+//				for(i = 0; i<p4_Q; i++)
+//				{
+//					x = (i+1);
+//					System.out.println("Card "+(x)+": " +hand4[i]);
+//				}
+//				System.out.println("\n---P4 points: "+ pointsP4+"\n");
+				System.out.println("P4 stats: "+ toStringTest4);
+				System.out.println("\nP4 bet: $"+testSetBet[4]);
+				System.out.println("\n\n");
 				
 				if(playerAmount >= 5)
 				{
 					//P5
-					System.out.println("-----------");
-					System.out.println("\nP5 info: ");
-					for(i = 0; i<5; i++)
-					{
-						x = (i+1);
-						System.out.println("Card "+(x)+": " +hand5[i]);
-					}
-					System.out.println("\n---P5 points: "+ pointsP5+"\n");
-					System.out.println("---P5 stats: "+ toStringTest5);
-	
+					p5_Q = p5.getQuantityCards();
+					System.out.println("--------------------------------------------");
+//					System.out.println("\nP5 info: ");
+//					for(i = 0; i<p5_Q; i++)
+//					{
+//						x = (i+1);
+//						System.out.println("Card "+(x)+": " +hand5[i]);
+//					}
+//					System.out.println("\n---P5 points: "+ pointsP5+"\n");
+					System.out.println("P5 stats: "+ toStringTest5);
+					System.out.println("\nP5 bet: $"+testSetBet[5]);
+					System.out.println("\n\n");
+					
 					if(playerAmount >= 6)
 					{
 						//P6
-						System.out.println("-----------");
-						System.out.println("\nP6 info: ");
-						for(i = 0; i<5; i++)
-						{
-							x = (i+1);
-							System.out.println("Card "+(x)+": " +hand6[i]);
-						}
-						System.out.println("\n---P6 points: "+ pointsP6+"\n");
-						System.out.println("---P6 stats: "+ toStringTest6);
+						p6_Q = p6.getQuantityCards();
+						System.out.println("--------------------------------------------");
+//						System.out.println("\nP6 info: ");
+//						for(i = 0; i<p6_Q; i++)
+//						{
+//							x = (i+1);
+//							System.out.println("Card "+(x)+": " +hand6[i]);
+//						}
+//						System.out.println("\n---P6 points: "+ pointsP6+"\n");
+						System.out.println("P6 stats: "+ toStringTest6);
+						System.out.println("\nP6 bet: $"+testSetBet[6]);
+						System.out.println("\n\n");
 						
 						if(playerAmount >= 7)
 						{
 							//P7
-							System.out.println("-----------");
-							System.out.println("\nP7 info: ");
-							for(i = 0; i<5; i++)
-							{
-								x = (i+1);
-								System.out.println("Card "+(x)+": " +hand7[i]);
-							}
-							System.out.println("\n---P7 points: "+ pointsP7+"\n");
-							System.out.println("---P7 stats: "+ toStringTest7);
+							p7_Q = p7.getQuantityCards();
+							System.out.println("--------------------------------------------");
+//							System.out.println("\nP7 info: ");
+//							for(i = 0; i<p7_Q; i++)
+//							{
+//								x = (i+1);
+//								System.out.println("Card "+(x)+": " +hand7[i]);
+//							}
+//							System.out.println("\n---P7 points: "+ pointsP7+"\n");
+							System.out.println("P7 stats: "+ toStringTest7);
+							System.out.println("\nP7 bet: $"+testSetBet[7]);
+							System.out.println("\n\n");
 							
 							if(playerAmount >= 8)
 							{
-								//P6
-								System.out.println("-----------");
-								System.out.println("\nP8 info: ");
-								for(i = 0; i<5; i++)
-								{
-									x = (i+1);
-									System.out.println("Card "+(x)+": " +hand8[i]);
-								}
-								System.out.println("\n---P8 points: "+ pointsP8+"\n");
-								System.out.println("---P8 stats: "+ toStringTest8);
+								//P8
+								p8_Q = p8.getQuantityCards();
+								System.out.println("--------------------------------------------");
+//								System.out.println("\nP8 info: ");
+//								for(i = 0; i<p8_Q; i++)
+//								{
+//									x = (i+1);
+//									System.out.println("Card "+(x)+": " +hand8[i]);
+//								}
+//								System.out.println("\n---P8 points: "+ pointsP8+"\n");
+								System.out.println("P8 stats: "+ toStringTest8);
+								System.out.println("\nP8 bet: $"+testSetBet[8]);
+								System.out.println("\n\n");
 
 							}
 						}
@@ -448,13 +496,13 @@ if(playerAmount >= 1)
 		}
 	}
 }
-System.out.println("----------------------");
-System.out.println("----------------------");
+System.out.println("----------end(line459)----------");
+System.out.println("________________________________");
 
 
 //----------------------------------HOS test-----------------------------------	
 	
-
+//HAVE TO TURN THIS INTO A SMALLER PIECE OF CODE!!!
 //Hit or stay for all players followed by hit or stay for dealer
 //			This is just for player one right now... will add...
 //--------------------------------------------------------------
@@ -465,67 +513,585 @@ System.out.println("----------------------");
 			String blank = keyboard.nextLine();
 			System.out.println("\n\n");
 		}
-		System.out.println("\n\n--------------------------------");
+		System.out.println("\n\n------------(Start)-------------");
 		System.out.println("--------------------------------");
 		System.out.println("---------HS_Method Test---------\n");
-		
-		
+int hitNum = 0;
+
+if(playerAmount >= 1)
+{
+	p1_Q = 2;
+	do
+	{		
 		System.out.println(player[0]+", hit or stay?"+
 				" (eventually... see comments)");
 // 'what's your move: hit, stay, doubledown, surrender etc..')");
 		
 
 		answer_HS = keyboard.nextLine();
-		bool_HS = firstGame.hitOrStay(answer_HS);
-		System.out.println(bool_HS+ " -- first input");
+		bool_HS = p1.hitOrStay(answer_HS);
+		System.out.println(bool_HS+ " -- FIRST input");
 		
-		if(bool_HS = true)
+		if(bool_HS = true && answer_HS.equalsIgnoreCase("hit"))
 		{
 			tempCard = Deck.getCard();
-			entry1.setCard(tempCard, 2);
+			entry1.setCard(tempCard, (2+hitNum));
 			hand1 = entry1.getHand();
 			p1.setHand(hand1);
-			System.out.println("firstHit: "+tempCard);
-			
-		}
-		
-			
-		if(playerAmount >= 1)
-		{
-//test array for checking if the hand passed into dealer correctly
+			System.out.println("-------------------------- #"+(hitNum+1)+
+															" Hit: "+tempCard);
+															
+			p1_Q = p1.getQuantityCards();
 			int[] testArrayP1 = new int[11];
 			testArrayP1 = p1.getHand();
 			
-//just to make sure that the points are printing out correcctly
 			p1.setPoints();
 			pointsP1 = p1.getPoints();	
 			toStringTest1 = p1.concatenatedToString();
 			
-//tests that the array was changed correctly
-			for(i = 0; i<3; i++)
-			{
-				System.out.println("testArrayP1["+i+"] -- "+testArrayP1[i]);
-			}
 
+			
+		}
+		
+			
+
+//test array for checking if the hand passed into dealer correctly
+//MOVED INTO IF
+//			p1_Q = p1.getQuantityCards();
+//			int[] testArrayP1 = new int[11];
+//			testArrayP1 = p1.getHand();
+			
+//just to make sure that the points are printing out correcctly
+//			p1.setPoints();
+//			pointsP1 = p1.getPoints();	
+//			toStringTest1 = p1.concatenatedToString();
+			
+//tests that the array was changed correctly
+//			for(i = 0; i<11; i++)
+//			{
+//				System.out.println("testArrayP1["+i+"] -- "+testArrayP1[i]);
+//			}
+//*********** moving it into the if worked, i will repeat for 2-8
 			//P1
 //another copy of the first P1 printed stats
+
 			System.out.println("-----------");
 			System.out.println("\nP1 info: ");
-			for(i = 0; i<5; i++)
+			for(i = 0; i<p1_Q; i++)
 			{
 				x = (i+1);
 				System.out.println("Card "+(x)+": " +hand1[i]);
 			}
 			System.out.println("\n---P1 points: "+ pointsP1+"\n");
 			System.out.println("---P1 stats: "+ toStringTest1);
+			
+			hitNum++;
+			
+			if(pointsP1==21)
+			{
+				System.out.println("TWENTY-ONE MAH DUDE");
+			}
+			else if(pointsP1>21)
+			{
+				System.out.println("GJ MOON MOON, YOU BUSTED");
+			}
+	}while(bool_HS=true && pointsP1<21 && (!answer_HS.equals("stay")));
+
+}// ********* added the bracket here			
+			
+hitNum = 0;
+
+			
+			
+//P2
+//-----------------------------------------------------------------------------
+if(playerAmount >= 2)
+{
+	p2_Q = 2;
+	
+	do
+	{
+
+		System.out.println(player[1]+", hit or stay? (eventually... see comments)");
+		// 'what's your move: hit, stay, doubledown, surrender etc..')");	
+		
+		answer_HS = keyboard.nextLine();
+		bool_HS = p2.hitOrStay(answer_HS);
+		System.out.println(bool_HS+ " -- SECOND input");
+			if(bool_HS = true && answer_HS.equalsIgnoreCase("hit"))
+			{
+				tempCard = Deck.getCard();
+				entry2.setCard(tempCard, (2+hitNum));
+				hand2 = entry2.getHand();
+				p2.setHand(hand2);
+				System.out.println("-------------------------- #"+(hitNum+1)+
+																" Hit: "+tempCard);	
+																
+				p2_Q = p2.getQuantityCards();
+				
+				//test arrayP2
+				int[] testArrayP2 = new int[11];
+				testArrayP2 = p2.getHand();
+				p2.setPoints();
+				pointsP2 = p2.getPoints();	
+				toStringTest2 = p2.concatenatedToString();
+																											
+			}
+		
+
+			System.out.println("-----------");
+			System.out.println("\nP2 info: ");
+			for(i = 0; i<p2_Q; i++)
+			{
+				x = (i+1);
+				System.out.println("Card "+(x)+": " +hand2[i]);
+			}
+			System.out.println("\n---P2 points: "+ pointsP2+"\n");
+			System.out.println("---P2 stats: "+ toStringTest2);
+	
+	hitNum++;
+	
+			if(pointsP2==21)
+			{
+				System.out.println("TWENTY-ONE MAH DUDE");
+			}
+			else if(pointsP2>21)
+			{
+				System.out.println("GJ MOON MOON, YOU BUSTED");
+			}
+	}while(bool_HS=true && pointsP2<21 &&(!answer_HS.equalsIgnoreCase("stay")));
+}
+hitNum = 0;
+
+//P3
+//-----------------------------------------------------------------------------
+if(playerAmount >= 3)
+{
+	p3_Q = 2;
+	do
+	{	
+		System.out.println(player[2]+", hit or stay? (eventually... see comments)");
+		// 'what's your move: hit, stay, doubledown, surrender etc..')");	
+		
+		
+		answer_HS = keyboard.nextLine();
+		bool_HS = p3.hitOrStay(answer_HS);
+		System.out.println(bool_HS+ " -- THIRD input");
+			if(bool_HS = true && answer_HS.equalsIgnoreCase("hit"))
+			{
+				tempCard = Deck.getCard();
+				entry3.setCard(tempCard, (2+hitNum));
+				hand3 = entry3.getHand();
+				p3.setHand(hand3);
+				System.out.println("-------------------------- #"+(hitNum+1)+
+															" Hit: "+tempCard);
+				}
+				
+				p3_Q = p3.getQuantityCards();
+				//test arrayP3
+				int[] testArrayP3 = new int[11];
+				testArrayP3 = p3.getHand();
+				p3.setPoints();
+				pointsP3 = p3.getPoints();	
+				toStringTest3 = p3.concatenatedToString();
+
+				System.out.println("-----------");
+				System.out.println("\nP3 info: ");
+				for(i = 0; i<p3_Q; i++)
+				{
+					x = (i+1);
+					System.out.println("Card "+(x)+": " +hand3[i]);
+				}
+				System.out.println("\n---P3 points: "+ pointsP3+"\n");
+				System.out.println("---P3 stats: "+ toStringTest3);
+				
+			
+			
+			hitNum++;
+			
+			if(pointsP3==21)
+			{
+				System.out.println("TWENTY-ONE MAH DUDE");
+			}
+			else if(pointsP3>21)
+			{
+				System.out.println("GJ MOON MOON, YOU BUSTED");
+			}
+	}while(bool_HS=true && pointsP3<21 && (!answer_HS.equalsIgnoreCase("stay")));
+}		
+
+System.out.println("b4-ln710: STILL HITTING WHEN PLAYER TRIES TO STAY (fixed)");
+
+hitNum = 0;
+
+//P4
+//-----------------------------------------------------------------------------
+if(playerAmount >= 4)
+{
+	p4_Q = 2;
+	do
+	{	
+		System.out.println(player[3]+", hit or stay? (eventually... see comments)");
+		// 'what's your move: hit, stay, doubledown, surrender etc..')");	
+		
+		
+		answer_HS = keyboard.nextLine();
+		bool_HS = p4.hitOrStay(answer_HS);
+		System.out.println(bool_HS+ " -- FOURTH input");
+			if(bool_HS = true && answer_HS.equalsIgnoreCase("hit"))
+			{
+				tempCard = Deck.getCard();
+				entry4.setCard(tempCard, (2+hitNum));
+				hand4 = entry4.getHand();
+				p4.setHand(hand4);
+				System.out.println("-------------------------- #"+(hitNum+1)+
+															" Hit: "+tempCard);
+				}
+				
+				p4_Q = p4.getQuantityCards();
+				//test arrayP4
+				int[] testArrayP4 = new int[11];
+				testArrayP4 = p4.getHand();
+				p4.setPoints();
+				pointsP4 = p4.getPoints();	
+				toStringTest4 = p4.concatenatedToString();
+
+				System.out.println("-----------");
+				System.out.println("\nP4 info: ");
+				for(i = 0; i<p4_Q; i++)
+				{
+					x = (i+1);
+					System.out.println("Card "+(x)+": " +hand4[i]);
+				}
+				System.out.println("\n---P4 points: "+ pointsP4+"\n");
+				System.out.println("---P4 stats: "+ toStringTest4);
+				
+			
+			
+			hitNum++;
+			
+			if(pointsP4==21)
+			{
+				System.out.println("TWENTY-ONE MAH DUDE");
+			}
+			else if(pointsP4>21)
+			{
+				System.out.println("GJ MOON MOON, YOU BUSTED");
+			}
+	}while(bool_HS=true && pointsP4<21 && (!answer_HS.equalsIgnoreCase("stay")));
+}
+
+hitNum = 0;
+
+//P5
+//-----------------------------------------------------------------------------
+if(playerAmount >= 5)
+{
+	p5_Q = 2;
+	do
+	{	
+		System.out.println(player[4]+", hit or stay? (eventually... see comments)");
+		// 'what's your move: hit, stay, doubledown, surrender etc..')");	
+		
+		
+		answer_HS = keyboard.nextLine();
+		bool_HS = p5.hitOrStay(answer_HS);
+		System.out.println(bool_HS+ " -- FIFTH input");
+			if(bool_HS = true && answer_HS.equalsIgnoreCase("hit"))
+			{
+				tempCard = Deck.getCard();
+				entry5.setCard(tempCard, (2+hitNum));
+				hand5 = entry5.getHand();
+				p5.setHand(hand5);
+				System.out.println("-------------------------- #"+(hitNum+1)+
+															" Hit: "+tempCard);
+				}
+				
+				p5_Q = p5.getQuantityCards();
+				//test arrayP5
+				int[] testArrayP5 = new int[11];
+				testArrayP5 = p5.getHand();
+				p5.setPoints();
+				pointsP5 = p5.getPoints();	
+				toStringTest5 = p5.concatenatedToString();
+
+				System.out.println("-----------");
+				System.out.println("\nP5 info: ");
+				for(i = 0; i<p5_Q; i++)
+				{
+					x = (i+1);
+					System.out.println("Card "+(x)+": " +hand5[i]);
+				}
+				System.out.println("\n---P5 points: "+ pointsP5+"\n");
+				System.out.println("---P5 stats: "+ toStringTest5);
+				
+			
+			
+			hitNum++;
+			
+			if(pointsP5==21)
+			{
+				System.out.println("TWENTY-ONE MAH DUDE");
+			}
+			else if(pointsP5>21)
+			{
+				System.out.println("GJ MOON MOON, YOU BUSTED");
+			}
+	}while(bool_HS=true && pointsP5<21 && (!answer_HS.equalsIgnoreCase("stay")));
+}				
+
+hitNum = 0;
+
+//P6
+//-----------------------------------------------------------------------------
+if(playerAmount >= 6)
+{
+	p6_Q = 2;
+	do
+	{	
+		System.out.println(player[5]+", hit or stay? (eventually... see comments)");
+		// 'what's your move: hit, stay, doubledown, surrender etc..')");	
+		
+		
+		answer_HS = keyboard.nextLine();
+		bool_HS = p6.hitOrStay(answer_HS);
+		System.out.println(bool_HS+ " -- SIXTH input");
+			if(bool_HS = true && answer_HS.equalsIgnoreCase("hit"))
+			{
+				tempCard = Deck.getCard();
+				entry6.setCard(tempCard, (2+hitNum));
+				hand6 = entry6.getHand();
+				p6.setHand(hand6);
+				System.out.println("-------------------------- #"+(hitNum+1)+
+															" Hit: "+tempCard);
+				}
+				
+				p6_Q = p6.getQuantityCards();
+				//test arrayP6
+				int[] testArrayP6 = new int[11];
+				testArrayP6 = p6.getHand();
+				p6.setPoints();
+				pointsP6 = p6.getPoints();	
+				toStringTest6 = p6.concatenatedToString();
+
+				System.out.println("-----------");
+				System.out.println("\nP6 info: ");
+				for(i = 0; i<p6_Q; i++)
+				{
+					x = (i+1);
+					System.out.println("Card "+(x)+": " +hand6[i]);
+				}
+				System.out.println("\n---P6 points: "+ pointsP6+"\n");
+				System.out.println("---P6 stats: "+ toStringTest6);
+				
+			
+			
+			hitNum++;
+			
+			if(pointsP6==21)
+			{
+				System.out.println("TWENTY-ONE MAH DUDE");
+			}
+			else if(pointsP6>21)
+			{
+				System.out.println("GJ MOON MOON, YOU BUSTED");
+			}
+	}while(bool_HS=true && pointsP6<21 && (!answer_HS.equalsIgnoreCase("stay")));
+}
+
+hitNum = 0;
+
+//P7
+//-----------------------------------------------------------------------------
+if(playerAmount >= 7)
+{
+	p7_Q = 2;
+	do
+	{	
+		System.out.println(player[6]+", hit or stay? (eventually... see comments)");
+		// 'what's your move: hit, stay, doubledown, surrender etc..')");	
+		
+		
+		answer_HS = keyboard.nextLine();
+		bool_HS = p7.hitOrStay(answer_HS);
+		System.out.println(bool_HS+ " -- SEVENTH input");
+			if(bool_HS = true && answer_HS.equalsIgnoreCase("hit"))
+			{
+				tempCard = Deck.getCard();
+				entry7.setCard(tempCard, (2+hitNum));
+				hand7 = entry7.getHand();
+				p7.setHand(hand7);
+				System.out.println("-------------------------- #"+(hitNum+1)+
+															" Hit: "+tempCard);
+				}
+				
+				p7_Q = p7.getQuantityCards();
+				//test arrayP7
+				int[] testArrayP7 = new int[11];
+				testArrayP7 = p7.getHand();
+				p7.setPoints();
+				pointsP7 = p7.getPoints();	
+				toStringTest7 = p7.concatenatedToString();
+
+				System.out.println("-----------");
+				System.out.println("\nP7 info: ");
+				for(i = 0; i<p7_Q; i++)
+				{
+					x = (i+1);
+					System.out.println("Card "+(x)+": " +hand7[i]);
+				}
+				System.out.println("\n---P7 points: "+ pointsP7+"\n");
+				System.out.println("---P7 stats: "+ toStringTest7);
+				
+			
+			
+			hitNum++;
+			
+			if(pointsP7==21)
+			{
+				System.out.println("TWENTY-ONE MAH DUDE");
+			}
+			else if(pointsP7>21)
+			{
+				System.out.println("GJ MOON MOON, YOU BUSTED");
+			}
+	}while(bool_HS=true && pointsP7<21 && (!answer_HS.equalsIgnoreCase("stay")));
+}
+
+hitNum = 0;
+
+//P8
+//-----------------------------------------------------------------------------
+if(playerAmount >= 8)
+{
+	p8_Q = 2;
+	do
+	{	
+		System.out.println(player[7]+", hit or stay? (eventually... see comments)");
+		// 'what's your move: hit, stay, doubledown, surrender etc..')");	
+		
+		
+		answer_HS = keyboard.nextLine();
+		bool_HS = p8.hitOrStay(answer_HS);
+		System.out.println(bool_HS+ " -- EIGHTH input");
+			if(bool_HS = true && answer_HS.equalsIgnoreCase("hit"))
+			{
+				tempCard = Deck.getCard();
+				entry8.setCard(tempCard, (2+hitNum));
+				hand8 = entry8.getHand();
+				p8.setHand(hand8);
+				System.out.println("-------------------------- #"+(hitNum+1)+
+															" Hit: "+tempCard);
+				}
+				
+				p8_Q = p8.getQuantityCards();
+				//test arrayP8
+				int[] testArrayP8 = new int[11];
+				testArrayP8 = p8.getHand();
+				p8.setPoints();
+				pointsP8 = p8.getPoints();	
+				toStringTest8 = p8.concatenatedToString();
+				System.out.println("-----------");
+				System.out.println("\nP8 info: ");
+				for(i = 0; i<p8_Q; i++)
+				{
+					x = (i+1);
+					System.out.println("Card "+(x)+": " +hand8[i]);
+				}
+				System.out.println("\n---P8 points: "+ pointsP8+"\n");
+				System.out.println("---P8 stats: "+ toStringTest8);
+				
+			
+			
+			hitNum++;
+			
+			if(pointsP8==21)
+			{
+				System.out.println("TWENTY-ONE MAH DUDE");
+			}
+			else if(pointsP8>21)
+			{
+				System.out.println("GJ MOON MOON, YOU BUSTED");
+			}
+	}while(bool_HS=true && pointsP8<21 && (!answer_HS.equalsIgnoreCase("stay")));
+}						
+System.out.println("----------end(line1021)----------");
+System.out.println("________________________________");
+	
+//---------------------------end of player HOS test---------------------------------
+
+//---------------------------start of dealer HOS------------------------------------	
+	
+
+//DEALER
+//-----------------------------------------------------------------------------
+
+d_Q = 2;
+do
+	{	
+		System.out.println("Allright, my go now... Remember, I'm playing a hard seventeen");
+		
+		pointsDealer = dealer.getPoints();
+		
+		if(pointsDealer <= 17)
+		{
+			 dealerProbability = 1;
 		}
-	
-	
-	
-//---------------------------end of HOS test-----------------------------------	
-	
-	
-	
+		if(pointsDealer == 18)
+		{
+			dealerProbability = random.nextInt(10);
+		}
+		if(pointsDealer == 19)
+		{
+			dealerProbability = random.nextInt(20);
+		}
+		if(pointsDealer == 20)
+		{
+			dealerProbability = random.nextInt(30);
+		}		
+		
+
+		if(dealerProbability == 1)
+		{
+			tempCard = Deck.getCard();
+			entryDealer.setCard(tempCard, (2+hitNum));
+			handDealer = entryDealer.getHand();
+			dealer.setHand(handDealer);
+			System.out.println("-------------------------- #"+(hitNum+1)+
+														" Hit: "+tempCard);
+			}
+			
+			d_Q = dealer.getQuantityCards();
+			//test arrayDealer
+			int[] testArrayDealer = new int[11];
+			testArrayDealer = dealer.getHand();
+			dealer.setPoints();
+			pointsDealer = dealer.getPoints();	
+			toStringTestDealer = dealer.concatenatedToString();
+			System.out.println("-----------");
+			System.out.println("\nDEALER info: ");
+			for(i = 0; i<d_Q; i++)
+			{
+				x = (i+1);
+				System.out.println("Card "+(x)+": " +handDealer[i]);
+			}
+			System.out.println("\n---DEALER points: "+ pointsDealer+"\n");
+			System.out.println("---DEALER stats: "+ toStringTestDealer);
+			
+		
+		
+		hitNum++;
+		
+		if(pointsDealer ==21)
+		{
+			System.out.println("DEALER HIT 21");
+		}
+		else if(pointsDealer>21)
+		{
+			System.out.println("DEALER BUSTED");
+		}
+	}while(dealerProbability==1 && pointsDealer<21);
+							
 	
 	
 	}
