@@ -1,0 +1,43 @@
+
+ 
+public class BettingFinal {
+	
+		private int game, playerNum;
+		private double[] betPool = new double[9];
+		private double placedBet;
+		private double buyIn;
+
+	
+	// Constructor will be for the game, not the individual player
+	public BettingFinal(int gameNumber, double buyIn_Input)
+	{
+		this.buyIn = buyIn_Input;
+		this.betPool[0] = 10000.00;
+		for(int i = 1; i<this.betPool.length; i++)
+		{
+			//betPool[0] is the house money and [1-8] are unique to each player
+			this.betPool[i] = this.buyIn;
+		}
+		this.game = gameNumber;
+	}
+	
+	public double getPlayerBets(int playerNum)
+	{
+		this.playerNum = playerNum;
+		return(betPool[playerNum]);
+	}
+	
+	public double[] getAllBets()
+	{
+		return this.betPool;
+	}
+	
+	public void setBet(int playerNum, double betInput)
+	{
+		this.placedBet = betInput;
+		this.playerNum = playerNum;
+		this.betPool[this.playerNum] += this.placedBet;
+	}
+	
+
+}
