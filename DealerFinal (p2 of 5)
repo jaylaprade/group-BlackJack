@@ -1,0 +1,310 @@
+
+import java.util.Random;
+
+
+public class DealerFinal extends PlayerFinal {
+
+	
+	/** 	NEED TO CODE
+	 * 
+	 * ---New---
+	 * 1. [x]Total Points
+	 * 2. [x]Assign Suit
+	 * 3. []ToString & Concatenation of Number, Suit, Points for hand
+	 *
+	 *
+	 * ---Old---
+	 * 1. []Push or Stay on Seventeen. Hard Seventeen (just do in driver?)
+	 * 2. []Start creating ascii art for cards
+	 * 3. []Make array for player's hand in Player class
+	 *
+	 *
+	 *
+	*/
+	private static final String BUST = "BUST";
+	private int firstCard, secondCard, points, pointsWithAce, inHandNum;
+	private int setCardToHand;
+	private String[] suitArray = new String[10];
+	private String[] suitCache = new String[4];
+	private Random random = new Random();
+	
+	public boolean hOs = false;
+	public int numberOfCards;
+	public int tempIndex;
+	public int[] hand = new int[11];
+	
+	//c0, c1, etc... are random numbers assigned to each card which will match the numeric for toString
+	int c0, c1, c2, c3, c4, c5, c6, c7, c8, c9;
+//	private String suitDealer;
+	
+	
+	public DealerFinal(String playerName, int firstCard, int secondCard,
+						int[] handInput)
+	{
+		super(playerName, firstCard, secondCard);
+		this.inHandNum = 0;
+		for(int i = 0; i<2; i++)
+		{
+			this.hand[i] = handInput[i];
+			if(hand[i] > 0)
+			{
+				//counts how many cards are in hand
+				this.inHandNum++;
+			}
+		}
+		for(int i = 2; i<11; i++)
+		{
+			this.hand[i] = 0;
+		}
+		for(int i = 0; i<5; i++)
+		{
+			this.points += this.hand[i];
+		}
+		this.pointsWithAce = this.points;
+		
+		/* @suitArray[]
+		 * Sets a static suit to each array slot which will be matched with the
+	 	 * numeric card array. The suit array is filled prior to cards being
+		 * assigned and does not change.
+		 *
+		 * @c[0-9] see prior comment
+		 */
+		suitCache = DeckFinal.getSuit();
+		
+			this.c0 = random.nextInt(4);
+		this.suitArray[0] = suitCache[c0];
+			this.c1 = random.nextInt(4);
+		this.suitArray[1] = suitCache[c1];
+			this.c2 = random.nextInt(4);
+		this.suitArray[2] = suitCache[c2];
+			this.c3 = random.nextInt(4);
+		this.suitArray[3] = suitCache[c3];
+			this.c4 = random.nextInt(4);
+		this.suitArray[4] = suitCache[c4];
+			this.c5 = random.nextInt(4);
+		this.suitArray[5] = suitCache[c5];
+			this.c6 = random.nextInt(4);
+		this.suitArray[6] = suitCache[c6];
+			this.c7 = random.nextInt(4);
+		this.suitArray[7] = suitCache[c7];
+			this.c8 = random.nextInt(4);
+		this.suitArray[8] = suitCache[c8];
+			this.c9 = random.nextInt(4);
+		this.suitArray[9] = suitCache[c9];
+	}
+	
+	
+	/**
+	 * sets a single card within the driver hand
+	 * @param numericValue is the number on the card where 1 = ace
+	 * @param memSlot is the location of the card number(c1, c2, c3) in the hand array
+	 */ 
+	public void setSingleCard(int numericValue, int memSlot)
+	{
+		this.hand[memSlot] = numericValue;
+	}
+	/**
+	 * returns the cart that you set (just to test for bugs)
+	 * @param numeric Value same as previous method
+	 * @param memSlot same as previous method
+	 */
+	public int getSingleCard(int memSlot)
+	{
+		return hand[memSlot];
+	}
+	
+	public void setHand (int[] handIn)
+	{
+		/*
+		for(int i = 0; i<this.inHandNum; i++)
+		{
+			int temp = 0;
+			
+			this.inHandNum = 0;
+			if(hand[i] == 0 && handInput[i] != 0)
+			{
+				temp = hand[i];
+			}
+			
+			this.hand[i] = handInput[i];
+			
+			if(hand[i] == 0 && handInput[i] != 0)
+			{
+				this.hand[i] = temp;
+				this.inHandNum++;
+			}
+			if(hand[i] > 0)
+			{
+				this.inHandNum++;
+			}
+		}
+		*/
+		for(int i = 0; i<handIn.length; i++)
+		{
+			this.hand[i] = handIn[i];
+		}
+	}
+	//i want to delete this but its late in the evenin =(
+	public int getInHandNum()
+	{
+		return this.inHandNum;
+	}
+	
+	public int getQuantityCards()
+	{
+		this.numberOfCards = 0;
+		this.tempIndex = 0;
+		for (int i = 0; i<this.hand.length; i++)
+		{
+			this.tempIndex = this.hand[i];
+			if(this.tempIndex>0)
+			{
+				this.numberOfCards++;
+			}
+		}
+		
+		return this.numberOfCards;
+	}
+	
+	public int getPoints()
+	{
+		return this.points;
+	}
+	
+	public int getPointsWithAce()
+	{
+		return this.pointsWithAce;
+	}
+	
+	public void setPoints()
+	{
+		this.points = 0;
+		int ace = 0;
+		for (int i = 0; i<11; i++)
+		{
+			this.points += hand[i];
+			if(this.hand[i]==1)
+			{
+				ace++;
+			}
+		}
+
+		if(ace>0)
+		{
+			this.pointsWithAce = this.points;
+			this.pointsWithAce = (this.points + (10*ace));
+		}
+	}
+	
+	public String pointString()
+	{
+		int ace = 0;
+		
+		String output = "Points: "+this.points;
+		
+		for(int i = 0; i<11; i++)
+		{
+			if(hand[i] == 1)
+			{
+				ace++;
+			}
+		}
+		
+		if(ace>0)
+		{
+			output = "\n   Points with Ace as      One: " + this.points +
+				"\n   Points with Ace as   Eleven: " +this.pointsWithAce;
+			if(this.pointsWithAce>21)
+			{
+				output = "\n   Points with Ace as      One: " + this.points +
+					"\n   Points with Ace as   Eleven: " +BUST;
+			}
+			
+		}
+		return output;
+	}
+	
+	public int[] getHand()
+	{
+		return this.hand;
+	}
+	
+/*
+	public String[] getSuitArray()
+	{
+		for(int i = 0; i<10; i++)
+		{
+			suitArray[i] = DeckFinal.getSuit();
+		}
+		
+		return suitArray;
+	}
+*/	
+//	public String getSuitDealer()
+//	{
+//		return suitDealer;
+//	}
+	
+	
+//  I don't think I need this class	
+//	public void setSuit()
+//	{
+//
+//		DeckFinal newSuit = new DeckFinal();
+//		
+//		newSuit.suitSet();
+//		suitDealer = newSuit.getSuit();
+//	
+//	}
+	
+	public String concatenatedToString()
+	{
+		String handString = "";
+		int x;
+		int numberOfCards = 0;
+		int tempIndex = 0;
+		for (int i = 0; i<this.hand.length; i++)
+		{
+			tempIndex = this.hand[i];
+			if(tempIndex>0)
+			{
+				numberOfCards++;
+			}
+		}
+		for (int i = 0; i<numberOfCards; i++)
+		{
+			x = i+1;
+			handString += "\nCard"+(x)+": " + (this.hand[i]) + " of " + (this.suitArray[i]);
+		}
+		handString += "\n\nTotal Points in Hand: "+pointString();
+		
+		return handString;
+	}
+	
+	//moved from betting class
+	public boolean hitOrStay(String hitOrStay)
+	{
+		if(hitOrStay.equalsIgnoreCase("hit"))
+		{
+			this.hOs = true;
+		}
+		else if(hitOrStay.equalsIgnoreCase("stay"))
+		{
+			this.hOs = false;
+		}
+		else
+		{
+			System.out.println("Error -- HOS M.");
+		}
+		
+		return this.hOs;
+	}
+
+	
+
+	
+
+
+
+
+}
