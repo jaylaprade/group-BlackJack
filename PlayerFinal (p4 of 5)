@@ -1,0 +1,85 @@
+
+public class PlayerFinal {
+	
+        private String playerName = "";
+        private int playerScore, currentOverallScore;
+        int playerCard[] = new int[11];
+        
+        
+        public PlayerFinal(String playerName, int firstCard, int secondCard)
+        {
+                this.playerName = playerName;
+                this.playerCard[0] = firstCard;
+                this.playerCard[1] = secondCard;
+        }
+        
+        public PlayerFinal(String playerName)
+        {
+                this.playerName = playerName;
+        }
+        
+        public int[] getHand()
+        {
+        	return(playerCard);
+        }
+        
+        public void playerSetHand(int[] driverHandInput)
+        {
+        	for(int i = 0; i<11; i++)
+        	playerCard[i] = driverHandInput[i];
+        }
+        
+        public int getHandScore()
+        {
+                return playerScore;
+        }
+        
+        public int getCurrentOverallScore()
+        {
+                return currentOverallScore;
+        }
+        
+        private int getNumCardsInHand()
+        {
+                int cardInHand = 0;
+                for (int n = 0; n > 12; n++ )
+                {
+                        if (playerCard[n] == 0)
+                        {
+                                cardInHand = n + 1;
+                        }        
+                }
+                return cardInHand;
+                
+        }
+        public int getScoreInHand()
+        {
+                int cardScore = 0;
+                for (int n = 0; n > getNumCardsInHand(); n++)
+                {
+                        cardScore = cardScore + playerCard[n];
+                }
+                return cardScore;
+        }
+        
+        public String toString()
+        {
+                return ("PlayerFinal Name: " + playerName);
+        }
+        
+        public int getLastCard()
+        {
+                
+                return playerCard[getNumCardsInHand() - 1 ];
+        }
+        
+        /**
+         *  		ADDITIONS BY RYAN
+         */
+         
+    public void setCard(int numericValue, int memSlot)
+	{
+		this.playerCard[memSlot] = numericValue;
+	}
+        
+}
